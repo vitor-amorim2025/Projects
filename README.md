@@ -38,4 +38,5 @@ Projeto desenvolvido em Java para gerenciamento de clientes, produtos e compras.
 - Main.java
 ## Autor
 
-Vitor Amorim
+Vitor Schroeder de Amorim
+Estudante do Instituto Federal do Espirito do Santo(IFES) no curso de Informática para Internet.
