@@ -2,10 +2,12 @@ def verifica_vitoria(matriz:list, qtd_mina:int) -> bool:    # Verifica se todas 
     fechados = 0
     for i in range(len(matriz)):
         for j in range(len(matriz[0])):
-            if fechados == qtd_mina:
-                return True
             if matriz[i][j]["aberto"] == False:
                 fechados += 1
+    if fechados == qtd_mina:
+        return True
+    else:
+        return False
 
 def revela_bombas(matriz:list):     # Revela todas as bombas após derrota
     for i in range(len(matriz)):
@@ -171,7 +173,13 @@ def main():
                         print(f"Insira a coordenada onde ficará a bandeira.")
                         linha = int(input())
                         coluna = int(input())
-                        bandeira_matriz(matriz, linha, coluna, True)
+                        if matriz[linha-1][coluna-1]["aberto"] == False:
+                            if matriz[linha-1][coluna-1]["bandeira"] == False:
+                                bandeira_matriz(matriz, linha, coluna, True)
+                            else:
+                                print(f"Casa protegida por bandeira.")
+                        else:
+                            print(f"A casa já está aberta.")
                         gera_campo(matriz)
                 else:
                     print(f"1. Abrir quadrado\n2. Colocar bandeira\n3. Tirar bandeira")
@@ -195,15 +203,24 @@ def main():
                         print(f"Insira a coordenada onde ficará a bandeira.")
                         linha = int(input())
                         coluna = int(input())
-                        bandeira_matriz(matriz, linha, coluna, True)
+                        if matriz[linha-1][coluna-1]["aberto"] == False:
+                            if matriz[linha-1][coluna-1]["bandeira"] == False:
+                                bandeira_matriz(matriz, linha, coluna, True)
+                            else:
+                                print(f"Casa protegida por bandeira.")
+                        else:
+                            print(F"A casa já está aberta.")
                         gera_campo(matriz)
                     elif resp == 3:
                         print(f"Insira a coordenada da bandeira a ser retirada.")
                         linha = int(input())
                         coluna = int(input())
-                        bandeira_matriz(matriz, linha, coluna, False)
+                        if matriz[linha-1][coluna-1]["bandeira"] == True:
+                            bandeira_matriz(matriz, linha, coluna, False)
+                        else:
+                            print(f"Não nenhuma bandeira na casa.")
                         gera_campo(matriz)
-            print(f"\nContinuar? (0 para sair)")
+            print(f"\nContinuar? (1 para continuar e 0 para sair)")
             respf = int(input())
             if respf == 0:
                 break
